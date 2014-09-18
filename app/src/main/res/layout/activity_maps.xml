@@ -1,0 +1,72 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+    <ImageButton
+        android:id="@+id/btnSearchDirections"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:src="@android:drawable/ic_menu_search"
+        android:background="@null"/>
+
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_margin="5dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_toLeftOf="@+id/btnSearchDirections"
+        android:orientation="horizontal"
+        >
+        <EditText
+            android:id="@+id/editFrom"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.5"
+            android:hint="@string/hint_from"/>
+
+        <EditText
+            android:id="@+id/editTo"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.5"
+            android:hint="@string/hint_to"/>
+        </LinearLayout>
+
+    <fragment
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/map"
+        tools:context=".MapsActivity"
+        android:layout_marginTop="50dp"
+        android:layout_marginBottom="50dp"
+        android:name="com.google.android.gms.maps.SupportMapFragment"/>
+
+    <Button
+        android:id="@+id/btnShowList"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="@string/list"
+        android:layout_alignParentBottom="true"/>
+
+
+    <FrameLayout
+        android:id="@+id/fragmentContainer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    </FrameLayout>
+
+    </RelativeLayout>
+
+
+

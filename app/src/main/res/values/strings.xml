@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">TrafficInfo</string>
+    <string name="title_activity_maps">Map</string>
+
+    <string name="msg_data_load_failed">Cannot load data.</string>
+
+    <string name="hint_from">Od</string>
+    <string name="hint_to">Do</string>
+
+    <string name="add_data">Vpisi podatke</string>
+    <string name="list">Seznam</string>
+</resources>
