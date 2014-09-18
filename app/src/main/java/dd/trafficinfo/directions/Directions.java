@@ -1,7 +1,6 @@
 package dd.trafficinfo.directions;
 
 import com.google.android.gms.maps.model.LatLng;
-import com.google.android.maps.GeoPoint;
 
 import java.util.ArrayList;
 import java.util.List;

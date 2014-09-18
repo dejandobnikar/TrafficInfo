@@ -24,7 +24,7 @@ public class TrafficApplication extends Application {
         ti = new TrafficInfoComponent(this);
         dmc = new DownloadManagerComponent(this);
         locationComponent = new LocationComponent(this);
-        dirComponent = new DirectionsComponent();
+        dirComponent = new DirectionsComponent(this);
     }
 
 

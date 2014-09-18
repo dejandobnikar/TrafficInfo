@@ -15,9 +15,7 @@ import java.lang.ref.WeakReference;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-import dd.trafficinfo.core.BaseObject;
-import dd.trafficinfo.core.DataEvent;
-import dd.trafficinfo.core.Dogodki;
+import dd.trafficinfo.TrafficApplication;
 import de.greenrobot.event.EventBus;
 
 /**
@@ -32,23 +30,39 @@ public class DirectionsComponent {
 
     private static MyUpdateHandler mHandler;
 
+    private TrafficApplication app;
     private boolean isActive;
 
     //http://maps.googleapis.com/maps/api/directions/json?origin=Toronto&destination=Montreal&key=API_KEY
 
 
-    public DirectionsComponent() {
+    public DirectionsComponent(TrafficApplication app) {
 
+        this.app = app;
         mHandler = new MyUpdateHandler(this);
     }
 
 
+
     public boolean isActive() {
+
         return isActive;
     }
 
+
+
+    private String getDirectinsURL(String from, String to) {
+        return "https://maps.googleapis.com/maps/api/directions/json?origin="
+                +from
+                +"&destination="
+                +to
+                +"&sensor=false";
+    }
+
+
+
     public void getDirections(final String from, final String to) {
-/*
+
         ConnectivityManager cm = (ConnectivityManager) app.getSystemService(Context.CONNECTIVITY_SERVICE);
 
         NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
@@ -59,7 +73,7 @@ public class DirectionsComponent {
             mHandler.obtainMessage(MSG_DATA_FAILED).sendToTarget();
             return;
         }
-*/
+
 
         isActive = true;
 
@@ -70,16 +84,9 @@ public class DirectionsComponent {
                 InputStream is = null;
 
                 try {
+                    String directionsUrl = getDirectinsURL(from, to);
 
-                    //String URL_DATA = "http://maps.googleapis.com/maps/api/directions/json?origin=Toronto&destination=Montreal&key=" + "AIzaSyBRAcMdiPoYloA6FELwkkufZhglcQXYu2Y";
-
-                    String URL_DATA = "https://maps.googleapis.com/maps/api/directions/json?origin=Ljubljana"
-                        +from
-                        +"&destination="
-                        +to
-                        +"&sensor=false";
-
-                    URL url = new URL(URL_DATA);
+                    URL url = new URL(directionsUrl);
                     HttpURLConnection conn = (HttpURLConnection) url.openConnection();
                     conn.setRequestProperty("Content-Type", "application/json");
                     conn.setReadTimeout(10000);
@@ -88,7 +95,6 @@ public class DirectionsComponent {
                     conn.connect();
 
                     is = conn.getInputStream();
-
 
                     ObjectMapper mapper = new ObjectMapper();
                     mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
@@ -104,8 +110,6 @@ public class DirectionsComponent {
                                 }
                             }
                         }
-
-
 
                         mHandler.obtainMessage(MSG_DATA_OK,obj).sendToTarget();
                     }

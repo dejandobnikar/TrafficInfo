@@ -3,12 +3,10 @@ package dd.trafficinfo.core;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import android.content.Context;
-import android.content.res.Resources;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Handler;
 import android.os.Message;
-import android.util.Log;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -50,6 +48,7 @@ public class TrafficInfoComponent {
 
 
     public List<Dogodek> getTrafficData() {
+
         return listDogodki;
     }
 
@@ -68,7 +67,6 @@ public class TrafficInfoComponent {
         NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
         boolean isConnected = activeNetwork != null && activeNetwork.isConnectedOrConnecting();
 
-
         if (!isConnected) {
             mHandler.obtainMessage(MSG_DATA_FAILED).sendToTarget();
             return;
@@ -78,7 +76,6 @@ public class TrafficInfoComponent {
         new Thread(new Runnable() {
             @Override
             public void run() {
-
 
                 InputStream is = null;
 
@@ -105,7 +102,6 @@ public class TrafficInfoComponent {
                     else {
                         mHandler.obtainMessage(MSG_DATA_FAILED).sendToTarget();
                     }
-
                 }
                 catch (Exception e) {
                     e.printStackTrace();

@@ -9,11 +9,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.android.volley.toolbox.NetworkImageView;
-import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -73,6 +70,8 @@ public class InfoListFragment extends ListFragment {
 
 
     public void onEventMainThread(Location location) {
+
+        // re-sort on location found...
         lastKnownLocation = location;
     }
 

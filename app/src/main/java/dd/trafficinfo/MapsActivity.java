@@ -65,7 +65,6 @@ public class MapsActivity extends FragmentActivity implements View.OnClickListen
         app.getTrafficInfoComponent().loadTrafficData();
         app.getLocationComponent().findLocation();
 
-
         Fragment mapFragment = getSupportFragmentManager().findFragmentById(R.id.map);
         mapFragment.setRetainInstance(true);
     }
@@ -92,7 +91,6 @@ public class MapsActivity extends FragmentActivity implements View.OnClickListen
         super.onPause();
         EventBus bus = EventBus.getDefault();
         bus.unregister(this);
-
     }
 
 
@@ -159,7 +157,6 @@ public class MapsActivity extends FragmentActivity implements View.OnClickListen
         }
 
         displayData();
-
     }
 
 
@@ -262,7 +259,8 @@ public class MapsActivity extends FragmentActivity implements View.OnClickListen
      * This should only be called once and when we are sure that {@link #mMap} is not null.
      */
     private void setUpMap() {
-        //mMap.addMarker(new MarkerOptions().position(new LatLng(0, 0)).title("Marker"));
+
+        // TODO namesto zooma latlngbounds
         CameraUpdate update = CameraUpdateFactory.newLatLngZoom(latLngSlo, 7);
 
         mMap.moveCamera(update);
